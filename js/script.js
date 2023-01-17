@@ -4,7 +4,7 @@ let qntCartas = prompt("Com quantas cartas você quer jogar?");
   qntCartas =  prompt("Digite um numero válido");
   } 
 
-// inserir cartas no html (elementos no DOM com js).
+  // GUARDANDO GIFS NUM ARRAY
 const gifs = [
   '/img/madruga1.gif',
   '/img/madruga2.gif',
@@ -17,7 +17,7 @@ const gifs = [
 let cartas = document.querySelector("ul");
 cartas.innerHTML = [];
 
-//criando um array de 'cards' vazio e povoando o array com dois paths iguais por vez. 
+//CRIANDO UM ARRAY DE "CARDS" VAZIO E POVOANDO ESSE ARRAY COM DOIS PATHS IGUAIS POR VEZ. 
 let cards = [];
 for(let i = 0; i < qntCartas/2; i++){
   cards.push(gifs[i]);
@@ -64,8 +64,6 @@ function revelarCarta(carta) {
   cartaVirada.parentNode.classList.add("virada");
   cartaFront.classList.remove("card__front");
   cartaFront.classList.add("card__front--flip");
-  
-
   cartasViradas.push(cartaVirada);
   cartasFront.push(cartaFront);
   jogadas++;
@@ -75,58 +73,63 @@ function revelarCarta(carta) {
     return;
   }
   if(cartasViradas.length == 2) {
-//CARTAS DIFERENTES!
+    let body = document.querySelector("body")
+    body.classList.add('block'); // aqui travo tudo.
+    //CARTAS DIFERENTES!
     if(cartasViradas[0].querySelector("img").getAttribute("src") !== cartasViradas[1].querySelector("img").getAttribute("src")) {
-//DESVIRAR APÓS 1 SEGUNDO
-//DESABILITANDO AS CARTAS
-      // let naoViradas = document.querySelectorAll(".card:not(.virada)"); 
-      // console.log(naoViradas);
-      // naoViradas.forEach((item) => {
-      //   item.setAttribute("disabled", "");
-      // });  
-      
+      //DESVIRAR APÓS 1 SEGUNDO
+
+
+      //DESABILITANDO AS CARTAS APÓS SEGUNDA ESCOLHA
+        // let body = document.querySelector(".card").classList.add('block');
+          
+      // carta.removeEventListener(onclick); 
+      /* naoViradas.forEach(item => 
+         item.disabled = true);  */
+        //  let naoViradas = document.querySelector(".card").addAttribute(onclick);
+ 
       setTimeout(() => {
-        // document.querySelector("li:not(.completed):not(.selected)")
-        // naoViradas.forEach((item) => {
-        //   item.removeAttribute("disabled");
-        // });
+        // naoViradas.forEach(item => 
+        //   item.disabled = false);
+        // naoViradas = removeAttribute(onclick);
+        // console.log(naoViradas);
+        // document.querySelector(".card").classList.remove("block");
+        
+ 
         cartasViradas[0].classList.add("card__back");
         cartasViradas[0].parentNode.classList.remove("virada");
         cartasViradas[0].classList.remove("card__back--flip");
         cartasViradas[1].classList.add("card__back");
         cartasViradas[1].parentNode.classList.remove("virada");
         cartasViradas[1].classList.remove("card__back--flip");
-
         cartasFront[0].classList.add("card__front");
         cartasFront[0].classList.remove("card__front--flip");
         cartasFront[1].classList.add("card__front");
         cartasFront[1].classList.remove("card__front--flip");
-
-      
-
+       
         cartasViradas = [];
         cartasFront = [];
+
+        body.classList.remove('block');
       }, 1000); 
       return;
     }
-//CARTAS IGUAIS!!
+     //CARTAS IGUAIS!!
     if(cartasViradas[0].querySelector("img").getAttribute("src") == cartasViradas[1].querySelector("img").getAttribute("src")) {
-
       cartasViradas[0].parentNode.setAttribute("disabled", "");
       cartasViradas[1].parentNode.setAttribute("disabled", "");
+      body.classList.remove('block');
       cartasViradas = [];
       cartasFront = [];
       acertos++;
 
       if(acertos == fimDeJogo) {
         alert(`Parabéns, Você ganhou com ${jogadas} jogadas!`);
-
       }
       return;
-
     }
- 
   }
 }
+
 
 //IMPLEMENTAR UM SOM A CADA JOGADA/ACERTO/ERRO/FIMDEJOGO.
