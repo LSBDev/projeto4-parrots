@@ -23,25 +23,23 @@ for(let i = 0; i < qntCartas/2; i++){
 }
 cards.sort(comparador);
 function comparador() { 
-  return Math.random() - 0.5; 
+  return Math.random() - 0.5;
 }
-// inserir cartas no html (elementos no DOM com js).
+// inserir elementos no DOM.
   for (let i = 0; i < qntCartas; i++){
     cartas.innerHTML +=
   `<li>
-    <div class="card" onclick="revelarCarta(this)" id ="${i}">
+    <div data-test="card" class="card" onclick="revelarCarta(this)" id ="${i}">
       <div class="card__front face front">
-        <img class="card__img" src="/img/back.png" alt="papagaio">
+        <img data-test="face-down-image" class="card__img" src="/img/back.png" alt="papagaio">
       </div>
       <div class="card__back face madruguinha">
-        <img class="card__gif" src= ${cards[i]} alt="Sr. Madruga">
+        <img data-test="face-up-image" class="card__gif" src= ${cards[i]} alt="Sr. Madruga">
       </div>
     </div>
   </li>`;
   }
-  
 // Ao clicar, revela a carta e compara se tem algo igual a uma carta já virada ou, se for a primeira, espera uma carta ser virada.
-// Ao clicar, revela a carta e compara se tem algo igual a uma carta já virada ou, se for a primeira, espera uma carta ser virada. 
 let cartasViradas = [];
 let cartasFront = [];
 let jogadas = 0;
@@ -70,7 +68,7 @@ function revelarCarta(carta) {
   if(cartasViradas.length == 2) {
     //DESABILITANDO AS CARTAS APÓS SEGUNDA ESCOLHA
     let body = document.querySelector("body")
-    body.classList.add('block'); // aqui travo tudo.
+    body.classList.add('block');
     //CARTAS DIFERENTES!
     if(cartasViradas[0].querySelector("img").getAttribute("src") !== cartasViradas[1].querySelector("img").getAttribute("src")) {
       //DESVIRAR APÓS 1 SEGUNDO
