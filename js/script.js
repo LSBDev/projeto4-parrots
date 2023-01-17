@@ -2,8 +2,7 @@ let qntCartas = prompt("Com quantas cartas você quer jogar?");
 
   while (qntCartas%2 !== 0 || qntCartas < 4 || qntCartas > 14) {
   qntCartas =  prompt("Digite um numero válido");
-  } 
-
+  }
   // GUARDANDO GIFS NUM ARRAY
 const gifs = [
   '/img/madruga1.gif',
@@ -16,19 +15,16 @@ const gifs = [
 ];
 let cartas = document.querySelector("ul");
 cartas.innerHTML = [];
-
 //CRIANDO UM ARRAY DE "CARDS" VAZIO E POVOANDO ESSE ARRAY COM DOIS PATHS IGUAIS POR VEZ. 
 let cards = [];
 for(let i = 0; i < qntCartas/2; i++){
   cards.push(gifs[i]);
   cards.push(gifs[i]);
 }
-
 cards.sort(comparador);
 function comparador() { 
   return Math.random() - 0.5; 
 }
-
 // inserir cartas no html (elementos no DOM com js).
   for (let i = 0; i < qntCartas; i++){
     cartas.innerHTML +=
@@ -45,7 +41,6 @@ function comparador() {
   }
   
 // Ao clicar, revela a carta e compara se tem algo igual a uma carta já virada ou, se for a primeira, espera uma carta ser virada.
-
 // Ao clicar, revela a carta e compara se tem algo igual a uma carta já virada ou, se for a primeira, espera uma carta ser virada. 
 let cartasViradas = [];
 let cartasFront = [];
@@ -73,29 +68,13 @@ function revelarCarta(carta) {
     return;
   }
   if(cartasViradas.length == 2) {
+    //DESABILITANDO AS CARTAS APÓS SEGUNDA ESCOLHA
     let body = document.querySelector("body")
     body.classList.add('block'); // aqui travo tudo.
     //CARTAS DIFERENTES!
     if(cartasViradas[0].querySelector("img").getAttribute("src") !== cartasViradas[1].querySelector("img").getAttribute("src")) {
       //DESVIRAR APÓS 1 SEGUNDO
-
-
-      //DESABILITANDO AS CARTAS APÓS SEGUNDA ESCOLHA
-        // let body = document.querySelector(".card").classList.add('block');
-          
-      // carta.removeEventListener(onclick); 
-      /* naoViradas.forEach(item => 
-         item.disabled = true);  */
-        //  let naoViradas = document.querySelector(".card").addAttribute(onclick);
- 
-      setTimeout(() => {
-        // naoViradas.forEach(item => 
-        //   item.disabled = false);
-        // naoViradas = removeAttribute(onclick);
-        // console.log(naoViradas);
-        // document.querySelector(".card").classList.remove("block");
-        
- 
+      setTimeout(() => { 
         cartasViradas[0].classList.add("card__back");
         cartasViradas[0].parentNode.classList.remove("virada");
         cartasViradas[0].classList.remove("card__back--flip");
@@ -106,10 +85,8 @@ function revelarCarta(carta) {
         cartasFront[0].classList.remove("card__front--flip");
         cartasFront[1].classList.add("card__front");
         cartasFront[1].classList.remove("card__front--flip");
-       
         cartasViradas = [];
         cartasFront = [];
-
         body.classList.remove('block');
       }, 1000); 
       return;
@@ -130,6 +107,4 @@ function revelarCarta(carta) {
     }
   }
 }
-
-
 //IMPLEMENTAR UM SOM A CADA JOGADA/ACERTO/ERRO/FIMDEJOGO.
