@@ -75,10 +75,9 @@ ul {
   transition: all .5s;
   transform-style: preserve-3d;
 }
-
-// .card:hover .card__back {
-//   transform: rotateY(0deg);
-// }
-// .card:hover .card__front{
-//   transform: rotateY(-180deg);
-// }
+.card__back--flip {
+  transform: rotateY(0deg);
+}
+.card__front--flip {
+  transform: rotateY(-180deg);
+}

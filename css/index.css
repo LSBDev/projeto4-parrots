@@ -81,4 +81,12 @@ ul {
           backface-visibility: hidden;
   transition: all 0.5s;
   transform-style: preserve-3d;
+}
+
+.card__back--flip {
+  transform: rotateY(0deg);
+}
+
+.card__front--flip {
+  transform: rotateY(-180deg);
 }/*# sourceMappingURL=index.css.map */
