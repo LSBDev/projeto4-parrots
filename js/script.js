@@ -31,7 +31,7 @@ function comparador() {
   `<li>
     <div data-test="card" class="card" onclick="revelarCarta(this)" id ="${i}">
       <div class="card__front face front">
-        <img data-test="face-down-image" class="card__img" src="/img/back.png" alt="papagaio">
+        <img data-test="face-down-image" class="card__img" src="/img/CapaCard.webp" alt="Logo do Chaves">
       </div>
       <div class="card__back face madruguinha">
         <img data-test="face-up-image" class="card__gif" src= ${cards[i]} alt="Sr. Madruga">
@@ -99,7 +99,9 @@ function revelarCarta(carta) {
       acertos++;
 
       if(acertos == fimDeJogo) {
-        alert(`Parabéns, Você ganhou com ${jogadas} jogadas!`);
+        setTimeout(() => {
+          alert(`Parabéns, Você ganhou com ${jogadas} jogadas!`);
+        }, "1000");       
       }
       return;
     }
